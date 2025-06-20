@@ -21,39 +21,51 @@ The phrase **"Bello, non pace"** further emphasizes this. It suggests that life'
 *   **Minimalist Design:** A clean, distraction-free interface focusing solely on the passage of time.
 *   **Responsive:** Adapts to various screen sizes, from desktop to mobile.
 *   **Philosophical Touch:** Subtle reminders of "Memento Mori" and "Bello, non pace" to provoke thought.
-*   **PWA Ready:** Includes a service worker for offline capabilities and can be "installed" on devices.
+*   **PWA Ready:** Includes a service worker (from the `public` directory) for offline capabilities and can be "installed" on devices.
 
 ## 🛠️ Tech Stack
 
-*   **Frontend:** [React](https://reactjs.org/) with [TypeScript](https://www.typescriptlang.org/)
-*   **Styling:** [Tailwind CSS](https://tailwindcss.com/)
-*   **Service Worker:** For offline support and caching.
-*   **Development/Build:** (This project appears to use esm.sh for direct browser imports, no local bundler like Vite is explicitly configured in the provided files. The `index.html` directly imports `.tsx` files via an import map.)
+*   **Frontend:** [React](https://reactjs.org/) with [TypeScript](https://www.typescriptlang.org/) (React dependencies are referenced via CDN in `index.html` using an import map).
+*   **Styling:** [Tailwind CSS](https://tailwindcss.com/) (loaded via CDN in `index.html`).
+*   **Development Server & Build Tool:** [Vite](https://vitejs.dev/).
+*   **Service Worker:** For Progressive Web App (PWA) capabilities and offline support.
+*   **Package Manager:** Assumes npm (or yarn/pnpm, based on your `package.json` and preferences).
 
 ## 🚀 Getting Started (Development)
 
-This project is set up to run directly in browsers that support ES modules and import maps, as seen in `index.html`.
+This project uses Vite for its development server and build process.
 
-1.  **Serve the files:**
-    You'll need a simple HTTP server to serve the project files from the root directory. Many tools can do this, for example, using Node.js:
-    ```bash
-    npx serve .
-    ```
-    Or if you have Python installed:
-    ```bash
-    python -m http.server
-    ```
-    Then open the provided URL (e.g., `http://localhost:8000` or `http://localhost:3000`) in your browser.
+1.  **Prerequisites:**
+    *   [Node.js](https://nodejs.org/) (which includes npm) installed on your system.
 
-2.  **Cloning (if from a repository):**
-    If you have this project in a Git repository:
+2.  **Clone the Repository (if you haven't already):**
     ```bash
     git clone https://your-repository-url.git # Replace with your actual repo URL
-    cd memento-mori-countdown
+    cd memento-mori-countdown # Or your project's directory name
     ```
-    Then serve the files as described above.
 
-    There are no traditional `npm install` steps needed with the current setup, as dependencies like React are fetched directly via CDN (esm.sh).
+3.  **Install Dependencies:**
+    Navigate to the project directory and install the necessary packages defined in `package.json`:
+    ```bash
+    npm install
+    ```
+    (Or `yarn install` or `pnpm install` if you use a different package manager).
+
+4.  **Run the Development Server:**
+    Start the Vite development server:
+    ```bash
+    npm run dev
+    ```
+    (Or `yarn dev` or `pnpm dev`).
+    This will typically open the application in your default web browser at a local address (e.g., `http://localhost:5173`). Vite will handle the TypeScript compilation and serve the app with hot module replacement.
+
+5.  **Build for Production:**
+    To create a production-ready build:
+    ```bash
+    npm run build
+    ```
+    (Or `yarn build` or `pnpm build`).
+    The optimized static assets will be generated in the `dist` directory (or as configured in `vite.config.ts`). These files are then ready for deployment to a static hosting service.
 
 ## 💡 Potential Future Enhancements
 
