@@ -19,7 +19,6 @@ export const SystemTimeDisplay: React.FC<SystemTimeDisplayProps> = ({ currentTim
       <p className="text-xl md:text-2xl font-sans font-bold text-primordial-parchment tabular-nums tracking-wider">
         {currentTime}
       </p>
-      <p className="text-xs text-ancient-ink/80 font-sans tracking-wide mt-0.5">Текущее время</p>
     </div>
   );
 };
