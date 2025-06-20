@@ -14,14 +14,14 @@
       "sizes": "16x16 32x32 48x48"
     },
     {
-      "src": "/icon256.png",
-      "type": "image/x-icon",
-      "sizes": "256x256",
+      "src": "/icon-192x192.png",
+      "type": "image/png",
+      "sizes": "192x192",
       "purpose": "any maskable"
     },
     {
-      "src": "/icon512.png",
-      "type": "image/x-icon",
+      "src": "/icon-512x512.png",
+      "type": "image/png",
       "sizes": "512x512",
       "purpose": "any maskable"
     }

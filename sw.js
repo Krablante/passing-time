@@ -8,6 +8,8 @@ const URLS_TO_CACHE = [
   '/types.ts',
   '/manifest.json',
   '/favicon.ico',
+  '/icon-192x192.png', // Added PWA icon
+  '/icon-512x512.png', // Added PWA icon
   'https://cdn.tailwindcss.com'
   // Note: esm.sh URLs for react/react-dom are not cached here for simplicity,
   // browser's HTTP cache will handle them. For full offline, these would need specific URLs.
