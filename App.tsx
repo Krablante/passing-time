@@ -16,9 +16,7 @@ const App: React.FC = () => {
           handProgress={handProgress}
         />
       </div>
-      <footer className="mt-8 text-center text-sm text-vintage-brown-medium">
-        <p>&copy; {new Date().getFullYear()} Обратные часы. Винтажный стиль.</p>
-      </footer>
+      {/* Footer was here and has been removed */}
     </div>
   );
 };
