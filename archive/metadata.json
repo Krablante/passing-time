@@ -1,0 +1,6 @@
+{
+  "name": "Обратные часы (Reverse Clock)",
+  "description": "A PWA that displays the time remaining until the end of the day, counting down from 08:00. Features a vintage-styled horizontal clock face.",
+  "requestFramePermissions": [],
+  "prompt": ""
+}

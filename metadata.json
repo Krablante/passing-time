@@ -1,6 +1,6 @@
+
 {
-  "name": "Обратные часы (Reverse Clock)",
-  "description": "A PWA that displays the time remaining until the end of the day, counting down from 08:00. Features a vintage-styled horizontal clock face.",
-  "requestFramePermissions": [],
-  "prompt": ""
+  "name": "Tactical Countdown: Operation Dawn",
+  "description": "A militaristic-themed countdown timer, merging ancient warrior aesthetics with modern special forces precision. Shows time remaining until 'Operation Dawn' (midnight).",
+  "requestFramePermissions": []
 }

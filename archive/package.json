@@ -1,5 +1,5 @@
 {
-  "name": "tactical-countdown:-operation-dawn",
+  "name": "обратные-часы-(reverse-clock)",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -9,6 +9,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "vite": "^6.3.5",
+    "@vitejs/plugin-react": "^4.5.2",
+    "vite-plugin-pwa": "^1.0.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0"
   },

@@ -2,6 +2,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
+// Tailwind directives are loaded via CDN in index.html, so no global CSS import needed here.
 
 const rootElement = document.getElementById('root');
 if (!rootElement) {
