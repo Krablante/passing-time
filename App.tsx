@@ -1,73 +1,71 @@
 
 import React, { useState, useEffect, useCallback } from 'react';
-import { TimeLeft } from './types';
-import CountdownDisplay from './components/CountdownDisplay';
-import TimeOrb from './components/TimeOrb';
+import { TimeRemaining } from './types';
 
-interface TimeValues {
-  timeLeft: TimeLeft;
-  percentageRemaining: number;
-}
+const calculateTimeLeft = (): TimeRemaining => {
+  const now = new Date();
+  // Target midnight of the *next* day (start of tomorrow)
+  const tomorrow = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1, 0, 0, 0, 0);
+  const difference = tomorrow.getTime() - now.getTime();
+
+  let hours = '00';
+  let minutes = '00';
+  let seconds = '00';
+
+  if (difference > 0) {
+    const totalSeconds = Math.floor(difference / 1000);
+    hours = String(Math.floor(totalSeconds / 3600)).padStart(2, '0');
+    minutes = String(Math.floor((totalSeconds % 3600) / 60)).padStart(2, '0');
+    seconds = String(totalSeconds % 60).padStart(2, '0');
+  }
+  // If difference is <=0, it implies it's exactly midnight or past, 
+  // and it will show 00:00:00. The next tick will correctly calculate for the new day.
+  return { hours, minutes, seconds };
+};
 
 const App: React.FC = () => {
-  const calculateTimeValues = useCallback((): TimeValues => {
-    const now = new Date();
-    const tomorrow = new Date(now);
-    tomorrow.setDate(now.getDate() + 1);
-    tomorrow.setHours(0, 0, 0, 0);
+  const [timeLeft, setTimeLeft] = useState<TimeRemaining>(calculateTimeLeft());
 
-    const difference = tomorrow.getTime() - now.getTime(); // Milliseconds until midnight
-    const totalMillisecondsInDay = 24 * 60 * 60 * 1000;
-
-    let timeLeftData: TimeLeft = { hours: '00', minutes: '00', seconds: '00' };
-    let percentageRemaining = 0;
-
-    if (difference > 0) {
-      const hoursInDay = Math.floor((difference / (1000 * 60 * 60)) % 24);
-      timeLeftData = {
-        hours: String(hoursInDay).padStart(2, '0'),
-        minutes: String(Math.floor((difference / 1000 / 60) % 60)).padStart(2, '0'),
-        seconds: String(Math.floor((difference / 1000) % 60)).padStart(2, '0'),
-      };
-      percentageRemaining = Math.max(0, Math.min(100, (difference / totalMillisecondsInDay) * 100));
-    }
-    return { timeLeft: timeLeftData, percentageRemaining };
+  const updateTimeLeft = useCallback(() => {
+    setTimeLeft(calculateTimeLeft());
   }, []);
 
-  const [timeValues, setTimeValues] = useState<TimeValues>(calculateTimeValues());
-
   useEffect(() => {
-    const timer = setInterval(() => {
-      setTimeValues(calculateTimeValues());
-    }, 1000);
-
-    return () => clearInterval(timer);
-  }, [calculateTimeValues]);
+    const timerId = setInterval(updateTimeLeft, 1000);
+    return () => clearInterval(timerId); // Cleanup interval on component unmount
+  }, [updateTimeLeft]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-800 via-zinc-900 to-black flex flex-col items-center justify-center p-4 text-slate-300 selection:bg-amber-500 selection:text-black antialiased font-sans">
-      <main className="flex flex-col items-center">
-        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-amber-400 mb-6 sm:mb-8 tracking-wider uppercase filter drop-shadow-[0_1px_1px_rgba(0,0,0,0.5)]">
-        Bello, non pace
+    <div className="flex flex-col items-center justify-center h-screen w-screen bg-black text-gray-200 select-none antialiased">
+      <header className="absolute top-10 sm:top-12 md:top-16 text-center px-4">
+        <h1 className="text-lg sm:text-xl md:text-2xl font-light text-gray-400 uppercase tracking-wider">
+          Bello, non pace
         </h1>
-        
-        <div className="shadow-2xl shadow-black/60 rounded-full">
-          <TimeOrb percentage={timeValues.percentageRemaining} />
-        </div>
+      </header>
 
-        <div 
-          className="bg-slate-700/60 backdrop-blur-sm 
-                     border-2 border-t-slate-500/70 border-l-slate-500/70 
-                     border-b-black/90 border-r-black/90
-                     shadow-2xl shadow-black/70 rounded-lg 
-                     p-6 sm:p-8 md:p-10 mt-8 sm:mt-10"
-          role="region"
-          aria-labelledby="countdown-title" // Should have a visible title with this id if used
-        >
-           <span id="countdown-title" className="sr-only">Время до завершения операции</span>
-          <CountdownDisplay timeLeft={timeValues.timeLeft} />
+      <main className="flex items-center justify-center">
+        <div className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-mono font-medium text-gray-100 w-20 sm:w-24 md:w-28 lg:w-32 text-center">
+          {timeLeft.hours}
+        </div>
+        <div className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-mono text-gray-500 mx-1 sm:mx-2 md:mx-3 lg:mx-4 transform -translate-y-1 sm:-translate-y-1.5 md:-translate-y-2">
+          :
+        </div>
+        <div className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-mono font-medium text-gray-100 w-20 sm:w-24 md:w-28 lg:w-32 text-center">
+          {timeLeft.minutes}
+        </div>
+        <div className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-mono text-gray-500 mx-1 sm:mx-2 md:mx-3 lg:mx-4 transform -translate-y-1 sm:-translate-y-1.5 md:-translate-y-2">
+          :
+        </div>
+        <div className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-mono font-medium text-gray-100 w-20 sm:w-24 md:w-28 lg:w-32 text-center">
+          {timeLeft.seconds}
         </div>
       </main>
+
+      <footer className="absolute bottom-6 sm:bottom-8 md:bottom-10 text-center px-4">
+        <p className="text-xs sm:text-sm text-gray-600 hover:text-gray-500 transition-colors duration-300 font-serif italic">
+          Memento Mori
+        </p>
+      </footer>
     </div>
   );
 };

@@ -1,6 +1,5 @@
-
 {
-  "name": "Tactical Countdown: Operation Dawn",
-  "description": "A militaristic-themed countdown timer, merging ancient warrior aesthetics with modern special forces precision. Shows time remaining until 'Operation Dawn' (midnight).",
+  "name": "Memento Mori Countdown",
+  "description": "A minimalist countdown timer showing the time remaining until the end of the current day, with a reminder of the finite nature of time.",
   "requestFramePermissions": []
 }
