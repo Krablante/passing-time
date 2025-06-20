@@ -14,13 +14,13 @@
       "sizes": "16x16 32x32 48x48"
     },
     {
-      "src": "/favicon.ico",
+      "src": "/favicon256.ico",
       "type": "image/x-icon",
-      "sizes": "192x192",
+      "sizes": "256x256",
       "purpose": "any maskable"
     },
     {
-      "src": "/favicon.ico",
+      "src": "/favicon512.ico",
       "type": "image/x-icon",
       "sizes": "512x512",
       "purpose": "any maskable"
