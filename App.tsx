@@ -48,7 +48,7 @@ const App: React.FC = () => {
     <div className="min-h-screen bg-gradient-to-br from-slate-800 via-zinc-900 to-black flex flex-col items-center justify-center p-4 text-slate-300 selection:bg-amber-500 selection:text-black antialiased font-sans">
       <main className="flex flex-col items-center">
         <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-amber-400 mb-6 sm:mb-8 tracking-wider uppercase filter drop-shadow-[0_1px_1px_rgba(0,0,0,0.5)]">
-          ОПЕРАЦИЯ: 'ЗАРЯ'
+        Bello, non pace
         </h1>
         
         <div className="shadow-2xl shadow-black/60 rounded-full">
@@ -67,11 +67,6 @@ const App: React.FC = () => {
            <span id="countdown-title" className="sr-only">Время до завершения операции</span>
           <CountdownDisplay timeLeft={timeValues.timeLeft} />
         </div>
-        <footer className="mt-12 text-center">
-          <p className="text-xs text-slate-500 uppercase tracking-wider">
-            Каждая секунда на счету. Следующий рубеж: ПОЛНОЧЬ.
-          </p>
-        </footer>
       </main>
     </div>
   );
