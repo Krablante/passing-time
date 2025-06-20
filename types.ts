@@ -1,4 +1,3 @@
-
 export interface TimeRemaining {
   hours: string;
   minutes: string;
