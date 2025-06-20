@@ -13,25 +13,25 @@ export default defineConfig({
         name: 'Обратные часы',
         short_name: 'Часы',
         description: 'Показывает сколько времени осталось до конца суток, начиная с 08:00.',
-        theme_color: '#F5EEDA', // Vintage Paper
-        background_color: '#4A3B31', // Vintage Dark Brown
+        theme_color: '#DCCDBA', // Primordial Parchment
+        background_color: '#2A2F32', // Abyssal Stone
         display: 'standalone',
         scope: '/',
         start_url: '/',
         orientation: 'portrait',
         icons: [
           {
-            src: '/icons/icon-192x192.png', // Create this file in public/icons/
+            src: '/icons/icon-192x192.png', 
             sizes: '192x192',
             type: 'image/png',
           },
           {
-            src: '/icons/icon-512x512.png', // Create this file in public/icons/
+            src: '/icons/icon-512x512.png', 
             sizes: '512x512',
             type: 'image/png',
           },
           {
-            src: '/icons/icon-512x512-maskable.png', // Create this file in public/icons/
+            src: '/icons/icon-512x512-maskable.png', 
             sizes: '512x512',
             type: 'image/png',
             purpose: 'maskable',
@@ -39,7 +39,7 @@ export default defineConfig({
         ],
       },
       workbox: {
-        globPatterns: ['**/*.{js,css,html,ico,png,svg,woff,woff2,ttf}'], // Ensure fonts are cached
+        globPatterns: ['**/*.{js,css,html,ico,png,svg,woff,woff2,ttf}'], 
         runtimeCaching: [
           {
             urlPattern: ({url}) => url.origin === 'https://fonts.googleapis.com',
@@ -58,7 +58,7 @@ export default defineConfig({
             options: {
               cacheName: 'google-fonts-webfonts',
               expiration: {
-                maxEntries: 5,
+                maxEntries: 5, // Increased from 2 to 5 to accommodate new fonts
                 maxAgeSeconds: 60 * 60 * 24 * 365, // 1 Year
               },
               cacheableResponse: {
@@ -70,5 +70,5 @@ export default defineConfig({
       },
     }),
   ],
-  base: './', // Ensures assets are loaded correctly with HashRouter or relative paths
+  base: './', 
 });

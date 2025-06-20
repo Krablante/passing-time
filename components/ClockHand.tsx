@@ -6,38 +6,35 @@ interface ClockHandProps {
 }
 
 export const ClockHand: React.FC<ClockHandProps> = ({ progress }) => {
-  // Ensure progress is clamped between 0 and 1 to prevent visual overflow
   const clampedProgress = Math.max(0, Math.min(1, progress));
   
-  // Calculate left offset. Hand width is 2px, pointer tip is 8px wide.
-  // We want the center of the pointer tip to align with the progress.
-  // The hand element itself will be positioned by its left edge.
-  const handLeftOffset = `calc(${clampedProgress * 100}% - 4px)`; // 4px is half of pointer width
+  // Hand width (pointer base) is 10px for the new shape.
+  // We want the center of the pointer to align with progress.
+  const handLeftOffset = `calc(${clampedProgress * 100}% - 5px)`; // 5px is half of pointer base width
 
   return (
     <div
-      className="absolute top-[calc(50%-1px)] h-0.5 w-full z-10" // Centered vertically on the clock face's track area
+      className="absolute top-[calc(50%-1px)] h-0.5 w-full z-10"
       style={{
-        left: '0%', // Hand container spans full width
+        left: '0%', 
       }}
       role="timer" 
       aria-valuenow={Math.round(progress * 100)} 
       aria-valuemin={0} 
       aria-valuemax={100}
     >
-      {/* The visible hand element, including the ornate pointer */}
       <div 
-        className="absolute top-1/2 -translate-y-1/2 h-4" // Height of the pointer part
+        className="absolute top-1/2 -translate-y-1/2 h-5" // Height of the pointer part (20px)
         style={{ left: handLeftOffset }}
       >
-        {/* Ornate Pointer Tip (triangle or similar shape) */}
-        <div className="w-2 h-4 bg-vintage-gold transform origin-center"
+        {/* Sharper, more primitive Pointer Tip */}
+        <div className="w-[10px] h-5 bg-eldritch-bronze transform origin-center" // Pointer base 10px, height 20px
           style={{
-            clipPath: 'polygon(50% 0%, 0% 100%, 100% 100%)', // Simple triangle
+            // Sharper, slightly irregular polygon: a more aggressive point
+            clipPath: 'polygon(50% 0%, 0% 100%, 100% 100%)', 
+            // Alternative more talon-like: 'polygon(50% 0%, 0% 70%, 20% 100%, 80% 100%, 100% 70%)'
           }}
         />
-        {/* Optional: A thin line extending from the pointer if desired */}
-        {/* <div className="absolute top-1/2 -translate-y-1/2 right-full w-2 h-0.5 bg-vintage-gold" /> */}
       </div>
     </div>
   );

@@ -1,0 +1,83 @@
+/* index.css - Custom global styles */
+
+body {
+  /* REMOVED: background-color: #221E1C; This was obscuring the pseudo-elements */
+  position: relative; /* Essential for positioning pseudo-elements */
+  overflow: hidden; /* Prevent scrollbars from pseudo-elements if they extend */
+  margin: 0;
+  min-height: 100vh;
+  /* Tailwind 'text-ancient-ink' and 'font-sans' are applied in index.html */
+}
+
+/* Subtle cosmic texture layer - now with a deep space color and soft nebulae */
+body::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  /* Deep, dark cosmic blue/purple base */
+  background-color: #0A0F1A; 
+
+  /* Subtle, large-scale cosmic dust/nebula effect */
+  background-image:
+    /* Faint, deep blue cloud */
+    radial-gradient(ellipse at 25% 75%, rgba(30, 40, 80, 0.15) 0%, transparent 50%),
+    /* Faint, deep purple cloud */
+    radial-gradient(ellipse at 75% 30%, rgba(50, 30, 70, 0.1) 0%, transparent 50%),
+    /* Central, very diffuse darker area for depth */
+    radial-gradient(ellipse at 50% 50%, rgba(20, 20, 40, 0.2) 0%, transparent 60%);
+  
+  /* Each gradient covers the area, no tiling needed */
+  background-size: cover, cover, cover;
+  background-repeat: no-repeat;
+  
+  z-index: -2; /* Deepest visual layer, behind the light effect */
+  pointer-events: none;
+}
+
+/* Campfire light layer */
+body::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: -35%; /* Position light source further down, appearing to rise from below */
+  width: 220%;  /* Wider spread for a more encompassing light */
+  height: 160%; /* Taller spread */
+  background: radial-gradient(ellipse at 50% 100%, /* Light source at the bottom center of the pseudo-element */
+    rgba(255, 165, 0, 0.55) 0%,  /* Orange core - slightly less intense alpha */
+    rgba(255, 100, 0, 0.35) 25%, /* Deeper orange */
+    rgba(139, 0, 0, 0.15) 50%,  /* Dark red / ember glow - fades quicker */
+    rgba(0,0,0,0) 70%        /* Fade to transparent, affecting less of the "upper cave" */
+  );
+  transform: translateX(-50%);
+  animation: campfire-flicker 3.5s infinite alternate ease-in-out;
+  pointer-events: none;
+  z-index: -1; /* Behind main content, above base texture */
+}
+
+@keyframes campfire-flicker {
+  0% {
+    opacity: 0.6;
+    transform: translateX(-50%) scale(1.0, 1.0);
+  }
+  33% {
+    opacity: 0.8;
+    transform: translateX(-50.5%) scale(1.03, 1.01); /* Subtle shift and stretch */
+  }
+  66% {
+    opacity: 0.65;
+    transform: translateX(-49.5%) scale(0.97, 0.99); /* Subtle shift and compress */
+  }
+  100% {
+    opacity: 0.75;
+    transform: translateX(-50%) scale(1.01, 1.0);
+  }
+}
+
+/* Ensure root element and App content are above the pseudo-elements */
+#root {
+  position: relative; /* To establish a stacking context */
+  z-index: 1; /* Make sure content is above the pseudo-elements */
+  min-height: 100vh; /* Ensure #root also takes full height */
+  display: flex; /* Helps with centering the App component's content */
+  flex-direction: column; /* Aligns with App.tsx's flex container */
+}

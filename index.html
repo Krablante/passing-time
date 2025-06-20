@@ -1,32 +1,42 @@
-
 <!DOCTYPE html>
 <html lang="ru">
 <head>
   <meta charset="UTF-8" />
   <link rel="icon" type="image/svg+xml" href="/favicon.ico" /> <!-- Replace with your favicon -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#4A3B31" /> <!-- Vintage Dark Brown -->
+  <meta name="theme-color" content="#2A2F32" /> <!-- Abyssal Stone -->
   <title>Обратные часы</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Old+Standard+TT:wght@400;700&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
       theme: {
         extend: {
           colors: {
+            'primordial-parchment': '#DCCDBA',
+            'abyssal-stone': '#2A2F32',
+            'eldritch-bronze': '#7A5C2F',
+            'dried-blood': '#5C2A2A',
+            'ancient-ink': '#B8B0A2',
+            'shadow-gray': '#404548',
+            // Keep old vintage colors for reference or if a toggle is ever implemented
             'vintage-paper': '#F5EEDA',
             'vintage-dark-brown': '#4A3B31',
             'vintage-gold': '#B08D57',
             'vintage-deep-red': '#8C271E',
             'vintage-text': '#2F241E',
-            'vintage-brown-medium': '#786050', // For clock face divisions
+            'vintage-brown-medium': '#786050',
           },
           fontFamily: {
-            'sans': ['"EB Garamond"', 'serif'], // Default to Garamond for vintage
-            'display': ['"EB Garamond"', 'serif'],
+            'sans': ['"Old Standard TT"', 'serif'],
+            'display': ['"Cinzel Decorative"', 'serif'],
           },
+          boxShadow: {
+            'heavy-oppressive': '0 10px 20px rgba(0,0,0,0.3), 0 6px 6px rgba(0,0,0,0.25)',
+            'inner-deep': 'inset 0 4px 8px rgba(0,0,0,0.4)',
+          }
         },
       },
       plugins: [],
@@ -47,7 +57,7 @@
 </script>
 <link rel="stylesheet" href="/index.css">
 </head>
-<body class="bg-vintage-paper text-vintage-text font-sans">
+<body class="text-ancient-ink font-sans">
   <div id="root"></div>
   <script type="module" src="/index.tsx"></script>
 </body>

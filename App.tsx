@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { HeaderDate } from './components/HeaderDate';
 import { ClockDisplay } from './components/ClockDisplay';
@@ -8,15 +7,14 @@ const App: React.FC = () => {
   const { currentTimeText, handProgress, displayDateText } = useReverseClock();
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-vintage-paper text-vintage-text p-4 selection:bg-vintage-gold selection:text-vintage-paper">
-      <div className="w-full max-w-md md:max-w-lg lg:max-w-xl p-6 md:p-8 bg-vintage-dark-brown shadow-2xl rounded-lg border-4 border-vintage-gold">
+    <div className="flex flex-col items-center justify-center min-h-screen text-ancient-ink p-4 selection:bg-eldritch-bronze selection:text-primordial-parchment">
+      <div className="w-full max-w-md md:max-w-lg lg:max-w-xl p-6 md:p-8 bg-abyssal-stone shadow-heavy-oppressive rounded-sm border-4 border-eldritch-bronze">
         <HeaderDate dateText={displayDateText} />
         <ClockDisplay
           currentTimeText={currentTimeText}
           handProgress={handProgress}
         />
       </div>
-      {/* Footer was here and has been removed */}
     </div>
   );
 };
